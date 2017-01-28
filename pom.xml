@@ -26,12 +26,10 @@
             <groupId>org.glassfish.jersey.containers</groupId>
             <artifactId>jersey-container-grizzly2-http</artifactId>
         </dependency>
-        <!-- uncomment this to get JSON support:
          <dependency>
             <groupId>org.glassfish.jersey.media</groupId>
             <artifactId>jersey-media-moxy</artifactId>
         </dependency>
-        -->
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
@@ -67,6 +65,41 @@
                     <mainClass>com.dekses.jersey.docker.desafio.Main</mainClass>
                 </configuration>
             </plugin>
+            <plugin>
+              <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-dependency-plugin</artifactId>
+              <version>2.9</version>
+              <executions>
+                  <execution>
+                      <id>copy-dependencies</id>
+                      <phase>package</phase>
+                      <goals>
+                          <goal>copy-dependencies</goal>
+                      </goals>
+                      <configuration>
+                          <outputDirectory>${project.build.directory}/lib</outputDirectory>
+                          <overWriteReleases>false</overWriteReleases>
+                          <overWriteSnapshots>false</overWriteSnapshots>
+                          <overWriteIfNewer>true</overWriteIfNewer>
+                      </configuration>
+                  </execution>
+              </executions>
+          </plugin>
+          <plugin>
+              <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-jar-plugin</artifactId>
+              <version>2.5</version>
+              <configuration>
+                  <archive>
+                      <index>true</index>
+                      <manifest>
+                          <addClasspath>true</addClasspath>
+                          <classpathPrefix>lib/</classpathPrefix>
+                          <mainClass>com.dekses.jersey.docker.desafio.Main</mainClass>
+                      </manifest>
+                  </archive>
+              </configuration>
+          </plugin>
         </plugins>
     </build>
 
