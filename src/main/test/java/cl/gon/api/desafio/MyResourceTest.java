@@ -1,4 +1,4 @@
-package com.dekses.jersey.docker.desafio;
+package cl.gon.api.desafio;
 
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
