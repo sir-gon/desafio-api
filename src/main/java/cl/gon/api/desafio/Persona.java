@@ -1,10 +1,20 @@
 /*
  * @author Gonzalo Diaz <devel@gon.cl>
+ *
+ * Sources:
+ * * Age calculation: http://howtodoinjava.com/for-fun-only/java-code-to-calculate-age-from-date-of-birth/
+ * * Date-time string format: http://stackoverflow.com/a/12167395/6366150
  */
 
 package cl.gon.api.desafio;
 
 import javax.xml.bind.annotation.XmlRootElement;
+
+import org.joda.time.LocalDate;
+import org.joda.time.PeriodType;
+import org.joda.time.Period;
+import org.joda.time.format.DateTimeFormat;
+
 
 @XmlRootElement
 public class Persona {
@@ -29,9 +39,24 @@ public class Persona {
 
   public Persona calcularEdad(String fechaNacimiento) {
     // temporal hardcoded values
-    this.ageYears   = 10;
-    this.ageMonths  = 4;
-    this.ageDays    = 30;
+
+
+    try {
+        String input = "1987-02-22";
+        String pattern = "yyyy-MM-dd";
+
+        LocalDate birthdate = LocalDate.parse(input, DateTimeFormat.forPattern(pattern));
+
+        LocalDate now = new LocalDate();                    //Today's date
+        Period period = new Period(birthdate, now, PeriodType.yearMonthDay());
+
+        this.ageYears   = period.getYears();
+        this.ageMonths  = period.getMonths();
+        this.ageDays    = period.getDays();
+
+    } catch (Exception pe) {
+        pe.printStackTrace();
+    }
 
     return this;
   }
