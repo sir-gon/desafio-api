@@ -42,10 +42,9 @@ public class Persona {
 
 
     try {
-        String input = "1987-02-22";
         String pattern = "yyyy-MM-dd";
 
-        LocalDate birthdate = LocalDate.parse(input, DateTimeFormat.forPattern(pattern));
+        LocalDate birthdate = LocalDate.parse(fechaNacimiento, DateTimeFormat.forPattern(pattern));
 
         LocalDate now = new LocalDate();                    //Today's date
         Period period = new Period(birthdate, now, PeriodType.yearMonthDay());
