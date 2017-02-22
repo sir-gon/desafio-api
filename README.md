@@ -12,4 +12,4 @@ Para ejecutar la app en forma independiente:
 ```
 mvn -X clean package exec:java
 ```
-Para ejecutarla en conjunto con los otros componentes de la solucin, ver: [desafio-docker](https://github.com/sir-gon/desafio-docker)
+Para ejecutarla en conjunto con los otros componentes de la solución, ver: [desafio-docker](https://github.com/sir-gon/desafio-docker)
